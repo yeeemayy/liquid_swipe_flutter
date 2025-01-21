@@ -51,17 +51,20 @@ class PageReveal extends StatelessWidget {
           child: child,
         );
       default:
-        return ClipPath(
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          clipper: WaveLayer(
-              revealPercent: slideDirection == SlideDirection.leftToRight
-                  ? 1.0 - horizontalReveal
-                  : horizontalReveal,
-              slideDirection: slideDirection,
-              iconSize: iconSize,
-              verReveal: verticalReveal,
-              enableSideReveal: enableSideReveal),
-          child: child,
+        return RotatedBox(
+          quarterTurns: 1,
+          child: ClipPath(
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            clipper: WaveLayer(
+                revealPercent: slideDirection == SlideDirection.leftToRight
+                    ? 1.0 - horizontalReveal
+                    : horizontalReveal,
+                slideDirection: slideDirection,
+                iconSize: iconSize,
+                verReveal: verticalReveal,
+                enableSideReveal: enableSideReveal),
+            child: RotatedBox(quarterTurns: -1, child: child),
+          ),
         );
     }
   }

@@ -88,8 +88,8 @@ class _PageDraggerState extends State<PageDragger> {
       //Getting new position details
       final newPosition = details.globalPosition;
       //Change in position in x
-      final dx = dragStart!.dx - newPosition.dx;
-      final dy = newPosition.dy;
+      final dx = dragStart!.dy - newPosition.dy;
+      final dy = newPosition.dx;
 
       slideDirection = SlideDirection.none;
       //predicting slide direction
